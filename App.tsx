@@ -74,7 +74,7 @@ const App: React.FC = () => {
         {/* Interactive Card */}
         <main className="flex-1 bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col min-h-0">
           {/* Visualization Area */}
-          <div className="flex-1 relative bg-white border-b border-slate-100 min-h-0 overflow-hidden">
+          <div className="flex-1 relative bg-white border-b border-slate-100 overflow-hidden" style={{ minHeight: '400px' }}>
             <ScaleSimulation blockWeight={targetWeight} />
           </div>
           

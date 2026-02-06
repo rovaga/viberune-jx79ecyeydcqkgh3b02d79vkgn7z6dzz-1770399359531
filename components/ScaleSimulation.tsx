@@ -77,8 +77,12 @@ const ScaleSimulation: React.FC<ScaleSimulationProps> = ({ blockWeight }) => {
       // --- Setup ---
       p.setup = () => {
         const canvas = p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+        canvas.style('display', 'block');
+        canvas.style('max-width', '100%');
+        canvas.style('max-height', '100%');
         canvas.style('width', '100%');
         canvas.style('height', '100%');
+        canvas.style('object-fit', 'contain');
         
         p.textFont(fontRegular);
 
@@ -340,7 +344,7 @@ const ScaleSimulation: React.FC<ScaleSimulationProps> = ({ blockWeight }) => {
     };
   }, []); // Empty dependency array ensures we only setup once, refs handle updates
 
-  return <div ref={containerRef} className="w-full h-full" />;
+  return <div ref={containerRef} className="w-full h-full flex items-center justify-center" style={{ minHeight: '400px', position: 'relative' }} />;
 };
 
 export default ScaleSimulation;
