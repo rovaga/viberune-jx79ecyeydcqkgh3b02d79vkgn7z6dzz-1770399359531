@@ -1,0 +1,5 @@
+{
+  "name": "Interactive Scale Diagram p5js",
+  "description": "A Brilliant-style interactive diagram demonstrating weight addition with a scale and draggable blocks.",
+  "requestFramePermissions": []
+}
