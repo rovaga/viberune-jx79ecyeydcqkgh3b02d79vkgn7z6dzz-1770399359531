@@ -69,43 +69,27 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 bg-slate-50 text-slate-800 font-sans">
-      <div className="max-w-2xl w-full space-y-6">
-        
-        {/* Main Header - Sets Context */}
-        <header className="text-center space-y-2">
-          <div className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold tracking-wide uppercase mb-2">
-            Desafío de Lógica
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-            Laboratorio de Pesos
-          </h1>
-          <p className="text-slate-600 max-w-lg mx-auto">
-            Utiliza la balanza para deducir los valores.
-            <br/>
-            <span className="text-sm opacity-80">La pesa gris vale <span className="font-bold">10</span>.</span>
-          </p>
-        </header>
-
+    <div className="w-screen h-screen overflow-hidden bg-slate-50 text-slate-800 font-sans flex items-center justify-center">
+      <div className="w-full h-full aspect-square max-w-full max-h-full flex flex-col p-2">
         {/* Interactive Card */}
-        <main className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+        <main className="flex-1 bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col min-h-0">
           {/* Visualization Area */}
-          <div className="w-full aspect-[4/3] relative bg-white border-b border-slate-100">
+          <div className="flex-1 relative bg-white border-b border-slate-100 min-h-0 overflow-hidden">
             <ScaleSimulation blockWeight={targetWeight} />
           </div>
           
           {/* Question & Interaction Area - Grouped for cohesion */}
-          <div className="p-6 bg-slate-50 flex flex-col items-center gap-6">
+          <div className="p-2 bg-slate-50 flex flex-col items-center gap-1.5 flex-shrink-0">
             
             {/* The Question */}
-            <h2 className="text-xl font-semibold text-slate-800 text-center">
+            <h2 className="text-base font-semibold text-slate-800 text-center">
               ¿Cuál es el peso de un bloque morado?
             </h2>
 
             {/* Options Grid */}
-            <div className="w-full grid grid-cols-4 gap-4">
+            <div className="w-full grid grid-cols-4 gap-2">
               {options.map((opt) => {
-                let btnClass = "py-4 text-xl font-bold rounded-xl transition-all duration-200 border-2 shadow-sm ";
+                let btnClass = "py-2 text-base font-bold rounded-xl transition-all duration-200 border-2 shadow-sm ";
                 
                 if (gameState === 'correct' && opt === targetWeight) {
                   btnClass += "bg-green-500 border-green-600 text-white scale-105 shadow-green-200";
@@ -131,48 +115,35 @@ const App: React.FC = () => {
             </div>
 
             {/* Feedback Area */}
-            <div className="h-12 w-full flex items-center justify-center">
+            <div className="h-8 w-full flex items-center justify-center">
               {gameState === 'correct' && (
-                <div className="flex items-center gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
-                  <div className="flex items-center gap-2 text-green-600 font-bold text-lg">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                <div className="flex items-center gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  <div className="flex items-center gap-2 text-green-600 font-bold text-sm">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                     ¡Correcto!
                   </div>
                   <button 
                     onClick={generateQuestion}
-                    className="px-6 py-2 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-colors shadow-lg"
+                    className="px-4 py-1 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-colors shadow-lg text-sm"
                   >
                     Siguiente
                   </button>
                 </div>
               )}
               {gameState === 'wrong' && (
-                <div className="text-red-500 font-medium animate-in fade-in zoom-in duration-200 flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <div className="text-red-500 font-medium animate-in fade-in zoom-in duration-200 flex items-center gap-2 text-sm">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                   Incorrecto. ¡Prueba a pesar los bloques!
                 </div>
               )}
                {gameState === 'playing' && (
-                <div className="text-slate-400 text-sm italic">
+                <div className="text-slate-400 text-xs italic">
                   Selecciona tu respuesta arriba
                 </div>
               )}
             </div>
           </div>
         </main>
-
-        {/* Legend Footer */}
-        <div className="flex justify-center gap-6 text-sm text-slate-500">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-[#a855f7]"></div>
-            <span>Bloque (?)</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-slate-400"></div>
-            <span>Pesa Fija (10)</span>
-          </div>
-        </div>
-
       </div>
     </div>
   );
